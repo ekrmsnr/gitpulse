@@ -1,0 +1,116 @@
+Metadata-Version: 2.4
+Name: gitpulse
+Version: 0.1.0
+Summary: Analyze a Git repository and generate a visual report.
+License: MIT
+Keywords: git,cli,analysis,report,developer-tools
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Classifier: Topic :: Software Development :: Version Control :: Git
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: gitpython>=3.1
+Requires-Dist: rich>=13.0
+Requires-Dist: pandas>=1.5
+
+# ⚡ gitpulse
+
+> Analyze any Git repository and generate a beautiful terminal or HTML report — in seconds.
+
+```
+gitpulse /path/to/repo
+```
+
+```
+╭──────────────────────────────────────────╮
+│  ⚡ gitpulse  /path/to/my-project        │
+╰──────────────────────────────────────────╯
+
+📊 Summary
+╭──────────────╮  ╭──────────────╮  ╭──────────────╮
+│ 843          │  │ 12           │  │ 5            │
+│ Total commits│  │ Contributors │  │ Branches     │
+╰──────────────╯  ╰──────────────╯  ╰──────────────╯
+
+👥 Top contributors
+  1  Alice <alice@dev.io>      312 ██████████████  +24,112  -18,904
+  2  Bob   <bob@dev.io>        198 ████████░░░░░░   +9,340   -6,212
+
+🔥 Most changed files
+  1  src/core.py      9,210 ████████████████
+  2  tests/test_api.py  4,880 ████████░░░░░░░░
+
+📅 Commit activity
+  By hour (00–23)  ▁▁▁▂▃▃▄▅▅▁▁▂▁▂▆▆█▇▅▅▄▃▃▂
+
+🗂  Language breakdown
+  Python    63   55.3%  ████████████████████
+  Markdown  38   33.3%  ████████████░░░░░░░░
+```
+
+## Features
+
+- **Commit summary** — total commits, unique authors, branches, repo age
+- **Top contributors** — ranked by commits, with additions/deletions
+- **File churn** — files changed most frequently across history
+- **Commit activity** — heatmap by weekday, sparkline by hour, monthly trend
+- **Language breakdown** — file-count distribution across detected languages
+- **HTML export** — dark-mode report you can share or embed anywhere
+- **`--since` filter** — analyze only commits after a given date
+
+## Installation
+
+```bash
+pip install gitpulse
+```
+
+Or install from source:
+
+```bash
+git clone https://github.com/ekrmsnr/gitpulse
+cd gitpulse
+pip install -e .
+```
+
+## Usage
+
+```bash
+# Analyze the current directory
+gitpulse
+
+# Analyze a specific repo
+gitpulse /path/to/repo
+
+# Show top 20 contributors and files
+gitpulse . --top 20
+
+# Only commits since a date
+gitpulse . --since 2024-01-01
+
+# Export an HTML report
+gitpulse . --html report.html
+
+# Disable colors (for CI/pipe)
+gitpulse . --no-color
+```
+
+## Options
+
+| Flag | Default | Description |
+|---|---|---|
+| `path` | `.` | Path to the Git repository |
+| `--top N` | `10` | Number of top items to display |
+| `--since DATE` | — | Analyze commits after this ISO date |
+| `--html FILE` | — | Export HTML report to FILE |
+| `--no-color` | — | Disable rich terminal colors |
+
+## Requirements
+
+- Python ≥ 3.9
+- `gitpython`, `rich`, `pandas`
+
+## License
+
+MIT

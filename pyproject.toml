@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gitpulse"
+version = "0.1.0"
+description = "Analyze a Git repository and generate a visual report."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+keywords = ["git", "cli", "analysis", "report", "developer-tools"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: Software Development :: Version Control :: Git",
+]
+dependencies = [
+    "gitpython>=3.1",
+    "rich>=13.0",
+    "pandas>=1.5",
+]
+
+[project.scripts]
+gitpulse = "gitpulse.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gitpulse*"]
